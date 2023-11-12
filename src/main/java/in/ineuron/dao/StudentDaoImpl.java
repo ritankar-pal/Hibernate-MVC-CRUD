@@ -51,8 +51,12 @@ public class StudentDaoImpl implements IStudentDao {
 	@Override
 	public Student searchStudent(Integer sid) {
 		
+		Student student = session.get(Student.class, sid);
 		
-		return null;
+		if(student != null) 
+			return student;
+		else
+			return null;
 		
 	}
 	
@@ -69,8 +73,39 @@ public class StudentDaoImpl implements IStudentDao {
 	@Override
 	public String deleteStudent(Integer sid) {
 		
+		Transaction transaction = session.beginTransaction(); 
+		boolean flag = false; 
+		String status = "";
 		
-		return "failure";
+		//load the matching student first::
+		Student student = searchStudent(sid);
+		
+		try {
+			if(transaction != null) {
+				if(student != null) {
+					session.delete(student);
+					flag = true;
+				}
+				else {
+					return "not found ";
+				}
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(flag) {
+				transaction.commit();
+				status = "success";
+			}
+			else {
+				transaction.rollback();
+				status = "failure";
+			}
+		}
+		
+		return status;
 	}
 
 }

@@ -12,7 +12,7 @@ public class Student implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GenericGenerator(name = "gen1", strategy = "identity")
+	@GenericGenerator(name = "gen1", strategy = "increment")
 	@GeneratedValue(generator = "gen1")
 	private Integer sid;
 	
