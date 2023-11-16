@@ -1,6 +1,8 @@
 package in.ineuron.dao;
 import in.ineuron.dto.Student;
 import in.ineuron.util.*;
+
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -64,8 +66,37 @@ public class StudentDaoImpl implements IStudentDao {
 	@Override
 	public String updateStudent(Student student){
 		
+		Transaction transaction = null; 
+		boolean flag = false; 
+		String status = "";
 		
-		return "failure";
+		try {
+			if(session != null)
+				if(student != null) {
+					transaction = session.beginTransaction();
+				}
+			
+			if(transaction != null) {
+				session.merge(student);
+				flag = true;
+			}
+				
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(flag) {
+				transaction.commit();
+				status = "success";
+			}
+			else {
+				transaction.rollback();
+				status = "failure";
+			}
+		}
+		
+		return status;
 	}
 	
 	

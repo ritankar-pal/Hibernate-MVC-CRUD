@@ -118,7 +118,6 @@ public class ControllerServlet extends HttpServlet {
 			String sid = request.getParameter("sid");
 			
 			Student student = studentService.searchStudent(Integer.parseInt(sid));
-			PrintWriter out = response.getWriter();
 			
 			RequestDispatcher rd = null;
 			
@@ -129,7 +128,6 @@ public class ControllerServlet extends HttpServlet {
 			}
 	
 		}
-		
 		
 		if(request.getRequestURI().endsWith("updateRecord")) {
 			
