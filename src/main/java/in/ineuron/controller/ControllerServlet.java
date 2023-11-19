@@ -91,24 +91,11 @@ public class ControllerServlet extends HttpServlet {
 
 			RequestDispatcher reqDisp = null;
 			
-			if(status.equals("success")) {
-				request.setAttribute("status", "success");
-				reqDisp = request.getRequestDispatcher("../deleteResult.jsp");
-				reqDisp.forward(request, response);
-			}
-			else if(status.equals("failure")) {
-				request.setAttribute("status", "failure");
-				reqDisp = request.getRequestDispatcher("../deleteResult.jsp");
-				reqDisp.forward(request, response);
-			}
-			else {
-				request.setAttribute("status", "not found");
-				reqDisp = request.getRequestDispatcher("../deleteResult.jsp");
-				reqDisp.forward(request, response);
-			}
+			request.setAttribute("status", status);
+			
+			reqDisp = request.getRequestDispatcher("../deleteResult.jsp");
+			reqDisp.forward(request, response);
 		}
-		
-		
 		
 		
 		
@@ -151,15 +138,12 @@ public class ControllerServlet extends HttpServlet {
 			String status = studentService.updateStudent(student);
 			
 			RequestDispatcher reqDisp = null;
-			if(status.equals("success")) {
-				
-				reqDisp = request.getRequestDispatcher("../../updatesuccess.html");
-				reqDisp.forward(request, response);
-			}
-			else {
-				reqDisp = request.getRequestDispatcher("../../updatefailure.html");
-				reqDisp.forward(request, response);
-			}
+			
+			request.setAttribute("status", status);
+	
+			reqDisp = request.getRequestDispatcher("../../updateResult.jsp");
+			reqDisp.forward(request, response);
+		
 		}
 		
 	}
