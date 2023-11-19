@@ -2,7 +2,8 @@ package in.ineuron.util;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import in.ineuron.dto.Student;
+
+import in.ineuron.model.Student;
 
 
 public class HibernateUtil{
@@ -33,6 +34,10 @@ public class HibernateUtil{
 		if(sessionFactory != null) {
 			sessionFactory.close();
 		}
+	}
+	
+	public static void startUp() {
+		System.out.println("*****Hibernate Start-Up*****");
 	}
 	
 }

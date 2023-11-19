@@ -1,6 +1,6 @@
 package in.ineuron.service;
 import in.ineuron.daofactory.StudentDaoFactory;
-import in.ineuron.dto.Student;
+import in.ineuron.model.Student;
 import in.ineuron.dao.IStudentDao;
 //import in.ineuron.servicefactory.StudentServiceFactory;
 

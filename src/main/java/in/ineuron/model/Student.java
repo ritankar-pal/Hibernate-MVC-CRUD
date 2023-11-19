@@ -1,9 +1,9 @@
-package in.ineuron.dto;
+package in.ineuron.model;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
@@ -12,8 +12,7 @@ public class Student implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GenericGenerator(name = "gen1", strategy = "increment")
-	@GeneratedValue(generator = "gen1")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer sid;
 	
 	private String sname;

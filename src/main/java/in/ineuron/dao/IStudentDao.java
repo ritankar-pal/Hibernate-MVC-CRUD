@@ -1,5 +1,5 @@
 package in.ineuron.dao;
-import in.ineuron.dto.Student;
+import in.ineuron.model.Student;
 
 
 

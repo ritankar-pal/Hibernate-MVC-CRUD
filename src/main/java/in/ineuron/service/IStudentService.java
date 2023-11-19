@@ -1,5 +1,5 @@
 package in.ineuron.service;
-import in.ineuron.dto.Student;
+import in.ineuron.model.Student;
 
 
 

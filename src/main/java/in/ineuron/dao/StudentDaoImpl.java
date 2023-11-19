@@ -1,11 +1,10 @@
 package in.ineuron.dao;
-import in.ineuron.dto.Student;
+import in.ineuron.model.Student;
 import in.ineuron.util.*;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 
 
 

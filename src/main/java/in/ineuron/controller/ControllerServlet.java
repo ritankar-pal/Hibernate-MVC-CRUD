@@ -7,16 +7,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import in.ineuron.dto.Student;
+
+import in.ineuron.model.Student;
 import in.ineuron.service.IStudentService;
 import in.ineuron.servicefactory.StudentServiceFactory;
+import in.ineuron.util.HibernateUtil;
 
 
 
-@WebServlet("/controller/*")
+@WebServlet(urlPatterns = {"/controller/*"}, loadOnStartup = 1)
 public class ControllerServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-
+	
+	static {
+		HibernateUtil.startUp();
+	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
@@ -57,17 +63,11 @@ public class ControllerServlet extends HttpServlet {
 		
 			RequestDispatcher reqDisp = null;
 				
-			if(status.equals("success")) {
-				request.setAttribute("status", "success");
-				reqDisp = request.getRequestDispatcher("../insertResult.jsp");
-				reqDisp.forward(request, response);
+			request.setAttribute("status", status);
+			reqDisp = request.getRequestDispatcher("../insertResult.jsp");
+			reqDisp.forward(request, response);
 				
-			}else {
-				request.setAttribute("status", "failure");				
-				reqDisp = request.getRequestDispatcher("../insertResult.jsp");
-				reqDisp.forward(request, response);
-			}
-		}	
+		}
 		
 		
 		//Searching an user:: 	
